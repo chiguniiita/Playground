@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{627D1033-7630-4C76-96C5-43C3566671A7}"
 	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\embed_commit_hash.ps1 = ..\embed_commit_hash.ps1
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject

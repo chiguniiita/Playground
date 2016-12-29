@@ -1,4 +1,4 @@
-$ASSEMBLY_INFO_PATH = "$PWD\src\Playground.Sample\Properties\AssemblyInfo.cs"
+$ASSEMBLY_INFO_PATH = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY\src\Playground.Sample\Properties\AssemblyInfo.cs"
 $ASSEMBLY_INFO_CONTENT = Get-Content $ASSEMBLY_INFO_PATH
 
 $ASSEMBLY_VERSION = [regex]::Match($ASSEMBLY_INFO_CONTENT, "AssemblyVersion\(`"(.+?)`"\)").Groups[1].Value
