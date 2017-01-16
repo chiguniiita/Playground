@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Playground.Sample
 {
@@ -19,6 +20,10 @@ namespace Playground.Sample
         static string GetInformationalVersion()
         {
             return Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+        }
+        private static string GetJsonString(object o)
+        {
+            return JsonConvert.SerializeObject(o);
         }
     }
 }
