@@ -11,9 +11,7 @@ $assemblies = (
 "System",
 "System.IO",
 "System.Net.Http",
-"System.Runtime.Serialization",
-"System.Runtime.Serialization.Json",
-"System.Text"
+"System.Runtime.Serialization"
 )
 
 $source = @"
