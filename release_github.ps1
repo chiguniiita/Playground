@@ -1,10 +1,11 @@
-Param([string]$dir, [string]$branchName, [string]$token)
+﻿Param([string]$dir, [string]$branchName, [string]$token)
 
 $dir
 $branchName
 $token
 
-Compress-Archive -Path $dir -DestinationPath $dir\$branchName.zip
+# srcフォルダ以下を圧縮
+Compress-Archive -Path $dir\src -DestinationPath $dir\$branchName.zip
 Get-Item $dir\$branchName.zip
 
 $assemblies = (
@@ -23,7 +24,7 @@ using System.Text;
 
 public class GitHubReleaseCreator
 {
-    public static string Execute(string dir, string branchName, string token)
+    public static void Execute(string dir, string branchName, string token)
     {
         using (var client = new HttpClient())
         {
@@ -31,7 +32,7 @@ public class GitHubReleaseCreator
             client.DefaultRequestHeaders.Add("Authorization", "token " + token);
             client.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("Mozilla", "5.0"));
 
-            //Release�쐬
+            //Release作成
             var release = new ReleaseInputData
             {
                 tag_name = branchName,
@@ -46,7 +47,7 @@ public class GitHubReleaseCreator
             var r = res.Result.Content.ReadAsStringAsync();
             var releaseData = Deserialize<ReleaseData>(r.Result);
 
-            //zip�̒ǉ�
+            //zipの追加
             var req = new HttpRequestMessage();
             req.RequestUri = new Uri(releaseData.upload_url.Replace("{?name,label}", "") + "?name=" + branchName + ".zip");
             req.Method = HttpMethod.Post;
