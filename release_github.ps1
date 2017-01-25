@@ -24,7 +24,7 @@ using System.Text;
 
 public class GitHubReleaseCreator
 {
-    public static void Execute(string dir, string branchName, string token)
+    public static string Execute(string dir, string branchName, string token)
     {
         using (var client = new HttpClient())
         {
