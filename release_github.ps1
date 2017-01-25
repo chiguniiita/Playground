@@ -8,11 +8,9 @@ Compress-Archive -Path $dir -DestinationPath $dir\$branchName.zip
 Get-Item $dir\$branchName.zip
 
 $assemblies = (
-"System",
-"System.IO",
 "System.Net.Http",
 "System.Runtime.Serialization",
-"System.Runtime.Serialization.Json"
+"System.Xml"
 )
 
 $source = @"
