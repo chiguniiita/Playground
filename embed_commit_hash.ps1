@@ -1,4 +1,6 @@
-Param([string]$WORKSPACE, [string]$GIT_COMMIT_HASH)
+Param([string]$WORKSPACE)
+
+$GIT_COMMIT_HASH = git rev-parse HEAD
 
 Write-Host $WORKSPACE
 Write-Host $GIT_COMMIT_HASH
@@ -9,7 +11,7 @@ $ASSEMBLY_INFO_CONTENT = Get-Content $ASSEMBLY_INFO_PATH
 $ASSEMBLY_VERSION = [regex]::Match($ASSEMBLY_INFO_CONTENT, "AssemblyVersion\(`"(.+?)`"\)").Groups[1].Value
 $ASSEMBLY_INFORMATIONAL_VERSION = [string]::Format("[assembly: AssemblyInformationalVersion(`"{0}-{1}`")]", $ASSEMBLY_VERSION, $GIT_COMMIT_HASH.Substring(0, 7))
 
-# 取得できたバージョンを表示
+# 蜿門ｾ励〒縺阪◆繝舌�ｼ繧ｸ繝ｧ繝ｳ繧定｡ｨ遉ｺ
 Write-Host $ASSEMBLY_INFORMATIONAL_VERSION
 
 Add-Content -Path $ASSEMBLY_INFO_PATH -Value $ASSEMBLY_INFORMATIONAL_VERSION
